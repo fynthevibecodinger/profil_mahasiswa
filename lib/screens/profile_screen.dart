@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/profile_photo.dart';
+import '../widgets/action_buttons.dart';
+import '../widgets/profile_header.dart';
 import '../widgets/profile_info.dart';
+import 'about_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -11,42 +13,43 @@ class ProfileScreen extends StatelessWidget {
         title: const Text('Profil Mahasiswa'),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 24),
-              const ProfilePhoto(radius: 60),
-              const SizedBox(height: 24),
-              const ProfileInfo(
-                name: 'Alfian Chandra',
-                nim: '25.11.6580',
-                programStudi: 'S1 Informatika',
-                email: 'email@students.amikom.ac.id',
-                lokasi: 'Yogyakarta, Indonesia',
-              ),
-              const SizedBox(height: 24),
-              // Tombol aksi
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.edit),
-                    label: const Text('Edit'),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.share),
-                    label: const Text('Bagikan'),
-                  ),
-                ],
-              ),
-            ],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutScreen()),
+              );
+            },
+            tooltip: 'Tentang Aplikasi',
           ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // a) Foto profil dan informasi mengisi ruang yang tersedia
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    ProfileHeader(name: 'Alfian Chandra', nim: '25.11.6580'),
+                    ProfileInfo(
+                      programStudi: 'S1 Informatika',
+                      email: 'email@students.amikom.ac.id',
+                      lokasi: 'Yogyakarta, Indonesia',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // b) Tombol aksi menggunakan Flexible dengan flex: 1
+            const ActionButtons(),
+          ],
         ),
       ),
     );

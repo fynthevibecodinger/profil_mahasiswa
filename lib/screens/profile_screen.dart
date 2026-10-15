@@ -22,8 +22,8 @@ class ProfileScreen extends StatelessWidget {
               const ProfilePhoto(radius: 60),
               const SizedBox(height: 24),
               const ProfileInfo(
-                name: 'Nama Mahasiswa',
-                nim: '21.11.0000',
+                name: 'Alfian Chandra',
+                nim: '25.11.6580',
                 programStudi: 'S1 Informatika',
                 email: 'email@students.amikom.ac.id',
                 lokasi: 'Yogyakarta, Indonesia',
